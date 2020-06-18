@@ -4,43 +4,44 @@ import { Animated, TouchableOpacity, Dimensions } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import MenuItem from './MenuItem'
 import { connect } from 'react-redux'
-
 function mapStateToProps (state) {
-    return { action: state.action }
+    return {
+        action: state.action
+    }
 }
 
 function mapDispatchToProps (dispatch) {
     return {
-        closeMenu: () => dispatch({
-            type: 'CLOSE_MENU'
+        closeAdmin: () => dispatch({
+            type: 'CLOSE_ADMIN'
         })
     }
 }
 
 const screenHeight = Dimensions.get('window').height
 
-class Menu extends React.Component {
+class Admin extends React.Component {
     state = {
         top: new Animated.Value(screenHeight)
     }
 
     componentDidMount () {
-        this.toggleMenu()
+        this.toggleAdmin()
     }
 
     componentDidUpdate () {
-        this.toggleMenu()
+        this.toggleAdmin()
     }
 
-    toggleMenu = () => {
+    toggleAdmin = () => {
 
-        if (this.props.action == 'openMenu') {
+        if (this.props.action == 'openAdmin') {
             Animated.spring(this.state.top, {
                 toValue: 50
             }).start()
         }
 
-        if (this.props.action == 'closeMenu') {
+        if (this.props.action == 'closeAdmin') {
             Animated.spring(this.state.top, {
                 toValue: screenHeight
             }).start()
@@ -51,12 +52,11 @@ class Menu extends React.Component {
         return (
             <AnimatedContainer style={{ top: this.state.top }}>
                 <Cover>
-                    <Image source={require('../assets/wallpaper3.jpg')}></Image>
-                    <Title>Tien</Title>
-                    <Subtitle>React</Subtitle>
+                    <Image source={require('../assets/login-bg.jpg')}></Image>
+                    <Title style={{ color: '#000' }}>Hello</Title>
                 </Cover>
                 <TouchableOpacity
-                    onPress={this.props.closeMenu}
+                    onPress={this.props.closeAdmin}
                     style={{
                         position: 'absolute',
                         top: 120,
@@ -87,7 +87,7 @@ class Menu extends React.Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Menu)
+export default connect(mapStateToProps, mapDispatchToProps)(Admin)
 
 const Container = styled.View`
     position: absolute;

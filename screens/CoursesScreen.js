@@ -4,7 +4,7 @@ import { Button } from 'react-native'
 
 class CoursesScreen extends React.Component {
     static navigationOptions = {
-        header: null
+        headerShown: false
     }
     render () {
         return (
