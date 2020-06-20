@@ -27,6 +27,10 @@ const reducer = (state = initialState, action) => {
       return { action: 'closeAdmin' }
     case 'UPDATE_NAME':
       return { name: action.name }
+    case 'OPEN_CARD':
+      return { action: 'openCard' }
+    case 'CLOSE_CARD':
+      return { action: 'closecard' }
     default:
       return state
   }
