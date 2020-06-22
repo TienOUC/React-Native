@@ -58,6 +58,9 @@ function mapDispatchToProps (dispatch) {
     return {
         openAdmin: () => dispatch({
             type: 'OPEN_ADMIN'
+        }),
+        openLogin: () => dispatch({
+            type: 'OPEN_LOGIN'
         })
     }
 }
@@ -108,6 +111,14 @@ class HomeScreen extends React.Component {
         }
     }
 
+    handleAvatar = () => {
+        if (this.props.name !== 'Admin') {
+            this.props.openAdmin()
+        } else {
+            this.props.openLogin()
+        }
+    }
+
     render () {
         return (
             <RootView>
@@ -122,7 +133,7 @@ class HomeScreen extends React.Component {
                         <ScrollView style={{ height: '100%' }}>
                             <TitleBar>
                                 <TouchableOpacity
-                                    onPress={this.props.openAdmin}
+                                    onPress={this.handleAvatar}
                                     style={{ position: 'absolute', top: 0, left: 0 }}
                                 >
                                     <Avatar />

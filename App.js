@@ -16,21 +16,28 @@ const client = new ApolloClient({
 
 const initialState = {
   action: '',
-  name: ''
+  name: 'Admin',
+  avatar: 'https://tva1.sinaimg.cn/large/007S8ZIlly1gftgvmed8ej303k03k742.jpg'
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'OPEN_ADMIN':
-      return { action: 'openAdmin' }
+      return { ...state, action: 'openAdmin' }
     case 'CLOSE_ADMIN':
-      return { action: 'closeAdmin' }
+      return { ...state, action: 'closeAdmin' }
     case 'UPDATE_NAME':
-      return { name: action.name }
+      return { ...state, name: action.name }
+    case 'UPDATE_AVATAR':
+      return { ...state, avatar: action.avatar }
     case 'OPEN_CARD':
-      return { action: 'openCard' }
+      return { ...state, action: 'openCard' }
     case 'CLOSE_CARD':
-      return { action: 'closecard' }
+      return { ...state, action: 'closecard' }
+    case 'OPEN_LOGIN':
+      return { ...state, action: 'openLogin' }
+    case 'CLOSE_LOGIN':
+      return { ...state, action: 'closeLogin' }
     default:
       return state
   }

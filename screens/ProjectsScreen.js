@@ -19,7 +19,7 @@ function getNextIndex (index) {
 }
 class ProjectsScreen extends React.Component {
     static navigationOptions = {
-        header: null
+        headerShown: false
     }
 
     state = {

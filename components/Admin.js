@@ -1,12 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Animated, TouchableOpacity, Dimensions } from 'react-native'
+import { Animated, TouchableOpacity, Dimensions, AsyncStorage } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import MenuItem from './MenuItem'
 import { connect } from 'react-redux'
+
+
 function mapStateToProps (state) {
     return {
-        action: state.action
+        action: state.action,
+        name: state.name
     }
 }
 
@@ -14,7 +17,19 @@ function mapDispatchToProps (dispatch) {
     return {
         closeAdmin: () => dispatch({
             type: 'CLOSE_ADMIN'
-        })
+        }),
+        updateName: name => {
+            dispatch({
+                type: 'UPDATE_NAME',
+                name
+            })
+        },
+        updateAvatar: avatar => {
+            dispatch({
+                type: 'UPDATE_AVATAR',
+                avatar
+            })
+        }
     }
 }
 
@@ -48,12 +63,21 @@ class Admin extends React.Component {
         }
     }
 
+    handleAdmin = (index) => {
+        if (index === 3) {
+            this.props.closeAdmin()
+            this.props.updateName('Admin')
+            this.props.updateAvatar('https://tva1.sinaimg.cn/large/007S8ZIlly1gftgvmed8ej303k03k742.jpg')
+            AsyncStorage.clear()
+        }
+    }
+
     render () {
         return (
             <AnimatedContainer style={{ top: this.state.top }}>
                 <Cover>
                     <Image source={require('../assets/login-bg.jpg')}></Image>
-                    <Title style={{ color: '#000' }}>Hello</Title>
+                    <Title style={{ color: '#000' }}>{this.props.name}</Title>
                 </Cover>
                 <TouchableOpacity
                     onPress={this.props.closeAdmin}
@@ -74,12 +98,18 @@ class Admin extends React.Component {
                 </TouchableOpacity>
                 <Content>
                     {items.map((item, index) => (
-                        <MenuItem
+                        <TouchableOpacity
                             key={index}
-                            icon={item.icon}
-                            title={item.title}
-                            text={item.text}
-                        />
+                            onPress={() => {
+                                this.handleAdmin(index)
+                            }} >
+                            <MenuItem
+                                key={index}
+                                icon={item.icon}
+                                title={item.title}
+                                text={item.text}
+                            />
+                        </TouchableOpacity>
                     ))}
                 </Content>
             </AnimatedContainer>
@@ -145,7 +175,7 @@ const Content = styled.View`
 const items = [
     {
         icon: 'ios-settings',
-        title: 'Acount',
+        title: 'Account',
         text: 'setting'
     },
     {
@@ -156,11 +186,11 @@ const items = [
     {
         icon: 'ios-compass',
         title: 'Learn More',
-        text: 'start'
+        text: 'start learning'
     },
     {
         icon: 'ios-exit',
         title: 'Log out',
-        text: 'see you soon!'
+        text: 'see you soon'
     }
 ]
