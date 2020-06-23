@@ -40,7 +40,7 @@ const CoursesStack = createStackNavigator({
     Courses: CoursesScreen
 })
 CoursesStack.navigationOptions = {
-    tabBarLabel: 'Courses',
+    tabBarLabel: 'Course',
     tabBarIcon: ({ focused }) => (
         <Ionicons name='ios-albums' size={26} color={focused ? activeColor : inactiveColor} />
     )
