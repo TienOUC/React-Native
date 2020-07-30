@@ -1,6 +1,6 @@
 ### Demo:
 
-http://www.dodolo.top/video
+http://blog.dodolo.top/video
 
 
 ![](https://tva1.sinaimg.cn/large/007S8ZIlly1gg2gofj5c8j30ct0oo3zr.jpg)
