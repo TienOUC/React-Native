@@ -1,6 +1,6 @@
 ### Demo:
 
-http://blog.dodolo.top/video
+[预览](http://blog.dodolo.top/video/react-native.mp4)
 
 
 ![](https://tva1.sinaimg.cn/large/007S8ZIlly1gg2gofj5c8j30ct0oo3zr.jpg)
